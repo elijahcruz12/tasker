@@ -6,37 +6,34 @@ namespace Tasker\Console;
 
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
+use NumberFormatter;
 use Predis\Client;
 use Symfony\Component\Console\Command\Command;
-use Symfony\Component\Console\Input\InputArgument;
+use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Tasker\Classes\Config;
-use Tasker\Classes\SQLite;
 
-class GetHost extends Command
+class GetAll extends Command
 {
     
     protected function configure()
     {
-        $this->setName('get:host')
-            ->setAliases(['gh', 'get-host'])
-             ->setDescription('Gets the host by the name used for it.')
-            ->addArgument('name', InputArgument::REQUIRED, 'The name you used for the host.');
+        $this->setName('get:all')
+            ->setAliases(['ga', 'get-all'])
+            ->setDescription('Get\'s all your current keys in a list');
     }
     
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $name = $input->getArgument('name');
-    
         $config = new Config();
-        
+    
         $logfile_location = __DIR__ . '/../logs/tasker-log-' . date('d-m-Y') . '.txt';
-        
+    
         $log_check = fopen($logfile_location, 'w');
-        
+    
         fclose($log_check);
-        
+    
         $log = new Logger('log');
         $log->pushHandler(new StreamHandler($logfile_location));
     
@@ -45,19 +42,24 @@ class GetHost extends Command
         if($database_type == 'redis'){
             $client = new Client('tcp://localhost', ['prefix' => 'tasker_']);
         }
-    
         
+        $output->write("Current Keys/Hosts" . PHP_EOL);
         
-        if($client->get($name) == null){
-            $output->write(PHP_EOL . 'Name does not exists' . PHP_EOL);
+        $keys = $client->keys('*');
+        
+        $array = array();
+        foreach ($keys as $key) {
+            $key = substr($key, strlen('tasker_'));
             
-            $log->error('Name: ' . $name . ' does not exist. command: get-host');
+            $value = $client->get($key);
             
-            return 1;
+            $output->write('Key: ' . $key . ' Value: ' . $value . PHP_EOL);
+            
         }
         
-        $output->write($client->get($name) . PHP_EOL);
+       
         
         return 0;
     }
+    
 }

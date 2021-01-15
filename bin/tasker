@@ -11,6 +11,7 @@ $app = new Symfony\Component\Console\Application('Tasker', '0.0.1');
 
 $app->add(new Tasker\Console\NewHost());
 $app->add(new Tasker\Console\GetHost());
+$app->add(new Tasker\Console\GetAll());
 $app->add(new Tasker\Console\Rename());
 
 $app->run();

@@ -10,7 +10,6 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Tasker\Classes\Config;
-use Tasker\Classes\SQLite;
 
 class NewHost extends Command
 {
@@ -37,6 +36,8 @@ class NewHost extends Command
         $host = $input->getArgument('host');
 
         $name = $input->getArgument('name');
+        
+        $empty = '';
 
         $config = new Config();
     
@@ -52,7 +53,7 @@ class NewHost extends Command
         $database_type = $config->getItem('DB_TYPE');
         
         if($database_type == 'redis'){
-            $client = new Client();
+            $client = new Client('tcp://localhost', ['prefix' => 'tasker_']);
         }
         
         $output->write(PHP_EOL.'<fg=green>
@@ -61,7 +62,7 @@ class NewHost extends Command
   | |/ /_\ \\ `--.| |/ / | |__ | |_/ /
   | ||  _  | `--. \    \ |  __||    /
   | || | | |/\__/ / |\  \| |___| |\ \
-  \_/\_| |_/\____/\_| \_/\____/\_| \_|'.PHP_EOL.PHP_EOL);
+  \_/\_| |_/\____/\_| \_/\____/\_| \_|<fg=white>'.PHP_EOL.PHP_EOL);
 
         sleep(1);
     
@@ -69,19 +70,19 @@ class NewHost extends Command
             $output->write(PHP_EOL . 'Checking if name exists...' . PHP_EOL);
         }
     
-        if($client->get('tasker_' . $name) != null){
+        if($client->get($name) != null){
             $output->write(PHP_EOL . 'Name is already in use.' . PHP_EOL);
             
             $log->error('Name: ' . $name . ' is already in use. command: new-host' );
             
-            $output->write($client->get('tasker_' . $name) . ' exists under the name: ' . $name);
+            $output->write($client->get($name) . ' exists under the name: ' . $name);
     
             $output->write(PHP_EOL . 'Use "rename" to change the name of the host.' . PHP_EOL);
             
             return 1;
         }
 
-        $client->set('tasker_' . $name, $host);
+        $client->set($name, $host);
         
         $output->write(PHP_EOL . 'Successfully created ' . $host . ' under the name ' . $name . '.');
         

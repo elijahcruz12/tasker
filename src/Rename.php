@@ -45,7 +45,7 @@ class Rename extends Command
         $database_type = $config->getItem('DB_TYPE');
     
         if($database_type == 'redis'){
-            $client = new Client();
+            $client = new Client('tcp://localhost', ['prefix' => 'tasker_']);
         }
         else{
             $output->write('Error: .env file for tasker is not defined.');
@@ -66,7 +66,7 @@ class Rename extends Command
             $output->write(PHP_EOL . 'Checking if old name really exists...');
         }
         
-        if($client->get('tasker_' . $old_name) == null){
+        if($client->get($old_name) == null){
             $output->write(PHP_EOL . 'Old name does name exist.');
             
             $log->error('Name: ' . $old_name . ' does not exist. Command: rename');
@@ -78,7 +78,7 @@ class Rename extends Command
             $output->write(PHP_EOL . 'Checking if old name does not exist...');
         }
     
-        if($client->get('tasker_' . $old_name) == null){
+        if($client->get($old_name) == null){
             $output->write(PHP_EOL . 'New name exists.');
     
             $log->error('Name: ' . $new_name . ' already exists. Command: rename');
@@ -86,7 +86,7 @@ class Rename extends Command
             return 1;
         }
         
-        $client->rename('tasker_' . $old_name, 'tasker_' . $new_name);
+        $client->rename($old_name, $new_name);
         
         $output->write(PHP_EOL . 'Successfully changed "' . $old_name . '" to "' . $new_name . '".' . PHP_EOL );
         return 0;
