@@ -31,7 +31,7 @@ There are two ways to install this, composer (easy), or by downloading the lates
 
 To install Tasker globally, just run:
 
-``` composer global install elijahcruz/tasker ```
+``` composer global require elijahcruz/tasker ```
 
 And your done. This will let you already use it.
 
