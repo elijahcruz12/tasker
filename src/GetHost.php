@@ -33,16 +33,6 @@ class GetHost extends Command
         if($database_type == 'redis'){
             $client = new Client();
         }
-        
-        $output->write(PHP_EOL.'<fg=green>
- _____ ___   _____ _   _ ______ _____
-|_   _/ _ \ /  ___| | / /|  ___| ___ \
-  | |/ /_\ \\ `--.| |/ / | |__ | |_/ /
-  | ||  _  | `--. \    \ |  __||    /
-  | || | | |/\__/ / |\  \| |___| |\ \
-  \_/\_| |_/\____/\_| \_/\____/\_| \_|'.PHP_EOL.PHP_EOL);
-    
-        sleep(1);
     
         
         
@@ -52,7 +42,7 @@ class GetHost extends Command
             return 1;
         }
         
-        $output->write($client->get('tasker_' . $name));
+        $output->write($client->get('tasker_' . $name) . PHP_EOL);
         
         return 0;
     }
