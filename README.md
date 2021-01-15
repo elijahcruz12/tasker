@@ -19,6 +19,7 @@ Note that tasker is currently in beta, and the only thing possible as per this r
 This whole project was build with PHP and Redis.
 
 - PHP 7.3+ or PHP 8.0+
+- intl PHP extension  
 - Redis
 - Composer
 
