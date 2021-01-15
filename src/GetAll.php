@@ -43,7 +43,7 @@ class GetAll extends Command
             $client = new Client('tcp://localhost', ['prefix' => 'tasker_']);
         }
         
-        $output->write("Current Keys/Hosts" . PHP_EOL);
+        $output->write("Current Names/Hosts" . PHP_EOL);
         
         $keys = $client->keys('*');
         
@@ -53,7 +53,7 @@ class GetAll extends Command
             
             $value = $client->get($key);
             
-            $output->write('Key: ' . $key . ' Value: ' . $value . PHP_EOL);
+            $output->write('Name: ' . $key . ' Host: ' . $value . PHP_EOL);
             
         }
         
