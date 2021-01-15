@@ -4,6 +4,8 @@
 namespace Tasker\Console;
 
 
+use Monolog\Handler\StreamHandler;
+use Monolog\Logger;
 use Predis\Client;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -29,6 +31,15 @@ class Rename extends Command
         $new_name = $input->getArgument('new-name');
     
         $config = new Config();
+    
+        $logfile_location = __DIR__ . '/../logs/tasker-log-' . date('d-m-Y') . '.txt';
+    
+        $log_check = fopen($logfile_location, 'w');
+    
+        fclose($log_check);
+    
+        $log = new Logger('log');
+        $log->pushHandler(new StreamHandler($logfile_location));
     
         $database_type = $config->getItem('DB_TYPE');
     
@@ -57,6 +68,8 @@ class Rename extends Command
         if($client->get('tasker_' . $old_name) == null){
             $output->write(PHP_EOL . 'Old name does name exist.');
             
+            $log->error('Name: ' . $old_name . ' does not exist. Command: rename');
+            
             return 1;
         }
     
@@ -66,6 +79,8 @@ class Rename extends Command
     
         if($client->get('tasker_' . $old_name) == null){
             $output->write(PHP_EOL . 'New name exists.');
+    
+            $log->error('Name: ' . $new_name . ' already exists. Command: rename');
             
             return 1;
         }

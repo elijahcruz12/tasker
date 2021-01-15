@@ -2,6 +2,8 @@
 
 namespace Tasker\Console;
 
+use Monolog\Handler\StreamHandler;
+use Monolog\Logger;
 use Predis\Client;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -36,6 +38,15 @@ class NewHost extends Command
         $name = $input->getArgument('name');
 
         $config = new Config();
+    
+        $logfile_location = __DIR__ . '/../logs/tasker-log-' . date('d-m-Y') . '.txt';
+    
+        $log_check = fopen($logfile_location, 'w');
+    
+        fclose($log_check);
+    
+        $log = new Logger('log');
+        $log->pushHandler(new StreamHandler($logfile_location));
         
         $database_type = $config->getItem('DB_TYPE');
         
@@ -59,6 +70,8 @@ class NewHost extends Command
     
         if($client->get('tasker_' . $name) != null){
             $output->write(PHP_EOL . 'Name is already in use.' . PHP_EOL);
+            
+            $log->error('Name: ' . $name . ' is already in use. command: new-host' );
             
             $output->write($client->get('tasker_' . $name) . ' exists under the name: ' . $name);
     
