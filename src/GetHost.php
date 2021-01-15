@@ -19,7 +19,8 @@ class GetHost extends Command
     
     protected function configure()
     {
-        $this->setName('get-host')
+        $this->setName('get:host')
+            ->setAliases(['gh', 'get-host'])
              ->setDescription('Gets the host by the name used for it.')
             ->addArgument('name', InputArgument::REQUIRED, 'The name you used for the host.');
     }

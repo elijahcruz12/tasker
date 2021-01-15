@@ -18,7 +18,8 @@ class Rename extends Command
     
     protected function configure()
     {
-        $this->setName('rename')
+        $this->setName('rename:host')
+            ->setAliases(['rn', 'rename'])
             ->setDescription('Allows you to rename your host.')
             ->addArgument('old-name', InputArgument::REQUIRED, 'The original name for the host.')
             ->addArgument('new-name', InputArgument::REQUIRED, 'The new name for the host.');
