@@ -38,27 +38,13 @@ And your done. This will let you already use it.
 ```tasker new-host user@1.2.3.4 mygoodname```
 
 ### Release
-Once you download the release, unzip it somewhere and add the `bin/` folder to your path. Then, you must run `composer install` to be able to install the packages required to run Tasker.
+Once you download the release, unzip it somewhere and add the `bin/` folder to your path. Then, you must run `composer install` in the root of the release to be able to install the packages required to run Tasker.
 
 ## Usage
 
 There are currently a few commands. Each of them is made to be as simple as possible.
 
-### new-host
-This command allows you to create new hosts. Each host is given a name to make remembering them easier.
-
-`tasker new-host user@1.2.3.4 mygoodname`
-
-### get-host
-This command allows you to get the host via it's name.
-
-`tasker get-host mygoodname`
-
-```
-output:
-
-user@1.2.3.4
-```
+You can check all the current commands by running `tasker list`.
 
 ### rename
 This command allows you to rename your hosts.
