@@ -13,5 +13,6 @@ $app->add(new Tasker\Console\NewHost());
 $app->add(new Tasker\Console\GetHost());
 $app->add(new Tasker\Console\GetAll());
 $app->add(new Tasker\Console\Rename());
+$app->add(new Tasker\Console\SSHToHost());
 
 $app->run();
