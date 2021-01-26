@@ -12,13 +12,16 @@
 
 Tasker is a SSH task manager that allows you to easily do things like run all your deployment commands for your production server in just one simple command.
 
-Note that tasker is currently in beta, and the only thing possible as per this release is the ability to add hosts, view them, and rename them. Could be useful for now if you need to remember multiple servers at once.
+
+## How it works
+
+Tasker works by saving hosts, the names you pick for them, and deployment file names in Redis. It also saves .dep files (pretty much txt files), in Tasker's location on your computer. By doing all of this, Tasker is able to run deployment tasks quickly and easily.
 
 ## Requirements
 
 This whole project was build with PHP and Redis.
 
-- PHP 7.3+ or PHP 8.0+
+- PHP 7.4+ or PHP 8.0+
 - intl PHP extension  
 - Redis
 - Composer
@@ -47,10 +50,28 @@ There are currently a few commands. Each of them is made to be as simple as poss
 
 You can check all the current commands by running `tasker list`.
 
-### rename
-This command allows you to rename your hosts.
+### Examples
 
-`tasker rename mygoodname myevenbettername`
+Adding new hosts
+
+`tasker new:host user@1.2.3.4 mygreatname`
+
+Creating Deployment files
+
+`tasker new:deployment mynewdeployment`
+
+Running deployment
+
+`tasker run mynewdeployment mygreatname`
+
+
+## Notes
+
+Please note that creating and editing deployments uses your default editor. For example, on Ubuntu 20.04 you could be running vim or nano by default.
+
+Please also note that I try my best to make this work well, and while this is very much a side project, I do use this myself, so it's not like I'll abandon it.
+
+PLEASE TRULY NOTE THAT I AM NOT RESPONSIBLE IF YOUR DEPLOYMENT SCRIPT MESSES UP YOUR SERVER. I DIDN'T CREATE THE SCRIPT, YOU DID. I ONLY GAVE YOU A WAY TO RUN THE SCRIPT.
 
 ## Contributing
 If you are looking to contribute to the code, feel free to open an issue/pr.
