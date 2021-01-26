@@ -1,0 +1,4 @@
+cd path/to/project
+git pull
+composer update
+echo Hello

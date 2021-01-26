@@ -10,9 +10,12 @@ if (file_exists(__DIR__.'/../../../autoload.php')) {
 $app = new Symfony\Component\Console\Application('Tasker', '0.0.4');
 
 $app->add(new Tasker\Console\NewHost());
+$app->add(new Tasker\Console\NewDeploymentFile());
 $app->add(new Tasker\Console\GetHost());
 $app->add(new Tasker\Console\GetAll());
 $app->add(new Tasker\Console\Rename());
+$app->add(new Tasker\Console\EditDeploymentFile());
 $app->add(new Tasker\Console\SSHToHost());
+$app->add(new Tasker\Console\RunDeployment());
 
 $app->run();

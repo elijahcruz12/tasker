@@ -20,7 +20,7 @@ class SSHToHost extends Command
     protected function configure()
     {
         $this->setName('ssh')
-            ->setDescription('Allows you to run commands i.')
+            ->setDescription('Allows you to ssh into a host.')
             ->addArgument('name', InputArgument::REQUIRED, 'The name you set for the host.', );
     }
     
@@ -47,6 +47,7 @@ class SSHToHost extends Command
         
         if($client->get($name) == null){
             $output->write('Host does not exist.' . PHP_EOL);
+            $log->error('Host with name ' . $name . ' does not exists.');
             return 1;
         }
         

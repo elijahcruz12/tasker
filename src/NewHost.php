@@ -20,8 +20,8 @@ class NewHost extends Command
      */
     protected function configure()
     {
-        $this->setName('new:host')
-            ->setAliases(['nh', 'new', 'new-host'])
+        $this->setName('host:new')
+            ->setAliases(['new:host', 'nh', 'new', 'new-host'])
             ->setDescription('Add a new host and give it a name')
             ->addArgument('host', InputArgument::REQUIRED, 'This is the user@host that you wish to add.')
             ->addArgument('name', InputArgument::REQUIRED, 'This is the name you wish to save it as. You can use the domain it is for, or just a simple name.');
