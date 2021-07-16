@@ -33,8 +33,6 @@ class Install extends Command
 
         $this->info('Installing Tasker');
 
-        $bar = $this->output->createProgressBar(5);
-
         $taskerHome = $_SERVER['HOME'] . '/.tasker';
 
         $this->task('Creating folder ' . $taskerHome, function () {
@@ -46,8 +44,6 @@ class Install extends Command
 
             return true;
         } );
-
-        $bar->advance();
 
         $this->task('Creating Deployments Folder', function () {
             sleep(1);
@@ -69,8 +65,6 @@ class Install extends Command
             return true;
         });
 
-        $bar->advance();
-
         $this->task('Create Database', function () {
             sleep(1);
 
@@ -81,8 +75,6 @@ class Install extends Command
             return true;
         });
 
-        $bar->advance();
-
         $this->task('Migrate Database', function () {
             sleep(1);
 
@@ -90,11 +82,6 @@ class Install extends Command
 
             return true;
         });
-
-        $bar->advance();
-
-
-        $bar->finish();
 
         $this->info('Successfully Installed.');
     }
