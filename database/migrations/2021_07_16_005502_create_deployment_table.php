@@ -15,6 +15,7 @@ class CreateDeploymentTable extends Migration
     {
         Schema::create('deployment', function (Blueprint $table) {
             $table->id();
+            $table->text('name');
             $table->timestamps();
         });
     }
