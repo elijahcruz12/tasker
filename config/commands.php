@@ -73,7 +73,15 @@ return [
         Illuminate\Foundation\Console\VendorPublishCommand::class,
         MigrateCommand::class,
         FreshCommand::class,
-        RefreshCommand::class
+        RefreshCommand::class,
+        ResetCommand::class,
+        WipeCommand::class,
+        MigrateInstall::class,
+        RollbackCommand::class,
+        StatusCommand::class,
+        SeederMakeCommand::class,
+        InstallCommand::class,
+        StubPublishCommand::class,
     ],
 
     /*
@@ -88,15 +96,7 @@ return [
     */
 
     'remove' => [
-        ResetCommand::class,
-        WipeCommand::class,
-        MigrateInstall::class,
-        RollbackCommand::class,
-        StatusCommand::class,
-        SeederMakeCommand::class,
-        InstallCommand::class,
-        StubPublishCommand::class,
-        
+        // ...
     ],
 
 ];
