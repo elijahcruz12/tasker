@@ -3,6 +3,7 @@
 use Illuminate\Database\Console\Migrations\FreshCommand;
 use Illuminate\Database\Console\Migrations\InstallCommand;
 use Illuminate\Database\Console\Migrations\MigrateCommand;
+use Illuminate\Database\Console\Migrations\MigrateMakeCommand;
 use Illuminate\Database\Console\Migrations\RefreshCommand;
 use Illuminate\Database\Console\Migrations\ResetCommand;
 use Illuminate\Database\Console\Migrations\RollbackCommand;
@@ -76,12 +77,12 @@ return [
         RefreshCommand::class,
         ResetCommand::class,
         WipeCommand::class,
-        MigrateInstall::class,
         RollbackCommand::class,
         StatusCommand::class,
         SeederMakeCommand::class,
         InstallCommand::class,
         StubPublishCommand::class,
+        MigrateMakeCommand::class,
     ],
 
     /*
