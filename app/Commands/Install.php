@@ -78,7 +78,7 @@ class Install extends Command
         $this->task('Migrate Database', function () {
             sleep(1);
 
-            $this->call('migrate');
+            $this->call('migrate', ['--force']);
 
             return true;
         });
