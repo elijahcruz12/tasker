@@ -78,6 +78,18 @@ remove:host     Allows you to remove hosts
 rename:host     Allows you to rename a host
 ````
 
+# How the run command works
+
+Under the hood, Tasker utilizes Spatie/SSH, allowing for a much easier experience. This uses `scp` under it's hood, which is how it it able to run as such.
+
+Deployment files are kinda like bash files in a way, only running one command per line, with the only real difference being that you don't have you .bashrc handy for it. It also doesn't work with actual bash syntax, such as if/else statements.
+
+# Tasker Limitations/Issues Observed
+
+There are some issues that I've personally noticed with Tasker, some aren't related to Tasker itself, while some are issues that don't actually need to be fixed.
+
+- When using the SSH command, after exiting, it will sometimes throw a SSH error. This is okay as it doesn't affect the usage of the SSH command.
+- When using node/npm/npx, if you installed these using NVM, they will most likely not work. This is because NVM uses your `.bashrc`. The only way to fix that issue is to reinstall node using another way, such as NodeSource.
 
 # License
 
