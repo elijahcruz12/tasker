@@ -1,7 +1,15 @@
 <?php
 
 use Illuminate\Database\Console\Migrations\FreshCommand;
+use Illuminate\Database\Console\Migrations\InstallCommand;
 use Illuminate\Database\Console\Migrations\MigrateCommand;
+use Illuminate\Database\Console\Migrations\RefreshCommand;
+use Illuminate\Database\Console\Migrations\ResetCommand;
+use Illuminate\Database\Console\Migrations\RollbackCommand;
+use Illuminate\Database\Console\Migrations\StatusCommand;
+use Illuminate\Database\Console\Seeds\SeederMakeCommand;
+use Illuminate\Database\Console\WipeCommand;
+use LaravelZero\Framework\Commands\StubPublishCommand;
 
 return [
 
@@ -65,6 +73,7 @@ return [
         Illuminate\Foundation\Console\VendorPublishCommand::class,
         MigrateCommand::class,
         FreshCommand::class,
+        RefreshCommand::class
     ],
 
     /*
@@ -79,11 +88,15 @@ return [
     */
 
     'remove' => [
-        'migrate:reset',
-        'migrate:rollback',
-        'migrate:status',
-        'db:wipe',
-
+        ResetCommand::class,
+        WipeCommand::class,
+        MigrateInstall::class,
+        RollbackCommand::class,
+        StatusCommand::class,
+        SeederMakeCommand::class,
+        InstallCommand::class,
+        StubPublishCommand::class,
+        
     ],
 
 ];
