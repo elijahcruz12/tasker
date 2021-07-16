@@ -12,6 +12,7 @@
     ],
     "require": {
         "php": "^7.4|^8.0",
+        "ext-sqlite": "*",
         "illuminate/database": "^8.40",
         "laminas/laminas-text": "^2.8",
         "laravel-zero/phar-updater": "^1.0.6",
