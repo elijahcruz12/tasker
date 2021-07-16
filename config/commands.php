@@ -1,5 +1,8 @@
 <?php
 
+use Illuminate\Database\Console\Migrations\FreshCommand;
+use Illuminate\Database\Console\Migrations\MigrateCommand;
+
 return [
 
     /*
@@ -60,6 +63,8 @@ return [
         Illuminate\Console\Scheduling\ScheduleRunCommand::class,
         Illuminate\Console\Scheduling\ScheduleFinishCommand::class,
         Illuminate\Foundation\Console\VendorPublishCommand::class,
+        MigrateCommand::class,
+        FreshCommand::class,
     ],
 
     /*
@@ -74,7 +79,11 @@ return [
     */
 
     'remove' => [
-        // ..
+        'migrate:reset',
+        'migrate:rollback',
+        'migrate:status',
+        'db:wipe',
+
     ],
 
 ];
