@@ -12,8 +12,9 @@
     ],
     "require": {
         "php": "^7.4|^8.0",
-        "ext-sqlite": "*",
+        "ext-sqlite3": "*",
         "illuminate/database": "^8.40",
+        "jc21/clitable": "^1.2",
         "laminas/laminas-text": "^2.8",
         "laravel-zero/phar-updater": "^1.0.6",
         "spatie/ssh": "^1.6",

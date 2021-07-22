@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "401795a072a3fc1aacd6ec2f952f43af",
+    "content-hash": "13e2111ea890a2dcd25c69fb9b350280",
     "packages": [
         {
             "name": "container-interop/container-interop",
@@ -471,6 +471,56 @@
                 "source": "https://github.com/laravel/framework"
             },
             "time": "2021-07-09T13:40:46+00:00"
+        },
+        {
+            "name": "jc21/clitable",
+            "version": "1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jc21/clitable.git",
+                "reference": "a9ff1fcdff131d25e90a9ae839a5805f6963b3da"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jc21/clitable/zipball/a9ff1fcdff131d25e90a9ae839a5805f6963b3da",
+                "reference": "a9ff1fcdff131d25e90a9ae839a5805f6963b3da",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "victorjonsson/markdowndocs": "dev-master"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "jc21": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-1-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Jamie Curnow",
+                    "email": "jc@jc21.com"
+                }
+            ],
+            "description": "CLI Table output for PHP scripts",
+            "homepage": "https://github.com/jc21/clitable",
+            "keywords": [
+                "cli",
+                "command",
+                "line",
+                "table"
+            ],
+            "support": {
+                "issues": "https://github.com/jc21/clitable/issues",
+                "source": "https://github.com/jc21/clitable/tree/v1.2"
+            },
+            "time": "2019-04-28T00:06:48+00:00"
         },
         {
             "name": "laminas/laminas-servicemanager",
@@ -6523,7 +6573,8 @@
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
-        "php": "^7.4|^8.0"
+        "php": "^7.4|^8.0",
+        "ext-sqlite3": "*"
     },
     "platform-dev": [],
     "plugin-api-version": "2.1.0"
